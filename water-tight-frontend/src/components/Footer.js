@@ -21,12 +21,14 @@ export default function Footer({ navigate }) {
           </div>
           <div className="footer-links">
             <h4>Legal</h4>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <button onClick={() => window.open('#', '_blank')}>Privacy Policy</button>
+            <button onClick={() => window.open('#', '_blank')}>Terms of Service</button>
           </div>
           <div className="footer-links">
             <h4>Admin</h4>
-            <a href="http://localhost:8000/admin/" target="_blank" rel="noopener noreferrer">Admin Login</a>
+            <button onClick={() => window.open('http://localhost:8000/admin/', '_blank')}>
+              Admin Login
+            </button>
           </div>
         </div>
         <div className="footer-bottom">
