@@ -1,0 +1,26 @@
+commit 40520b76e644d1b4b05bcb49fdc781f8161fd75a
+Author: EMMANUEL WASETH <wasethsapriso@gmail.com>
+Date:   Sat May 23 11:29:15 2026 +0300
+
+    Add README.md with project and member details
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..e9a3817
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,14 @@
++# NexaTech Project
++
++![NexaTech Website](nexatech.jpeg)
++
++---
++
++## Group Members
++
++1. Waseth Emmanuel – SCT212-0182/2024  
++2. Schroeder Njogu – SCT212-0088/2025  
++3. Allan Manoti – SCT212-0090/2025  
++4. Sam Ndaka – SCT212-0072/2025  
++5. Emmanuel Osinde – SCT212-0098/2025  
++6. Brilliant Kimari – SCT212-0086/2025
