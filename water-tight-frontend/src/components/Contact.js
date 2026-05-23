@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Contact.css';
 
+const BACKEND_URL = 'https://nexatech-backend-qeti.onrender.com';
+
 export default function Contact({ standalone }) {
   const [form, setForm] = useState({ name: '', email: '', message: '', website: '' });
   const [status, setStatus] = useState(null);
@@ -9,15 +11,6 @@ export default function Contact({ standalone }) {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: '' });
-  };
-
-  const getCSRFToken = () => {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-      const [name, value] = cookie.trim().split('=');
-      if (name === 'csrftoken') return value;
-    }
-    return '';
   };
 
   const handleSubmit = async () => {
@@ -29,24 +22,30 @@ export default function Contact({ standalone }) {
 
     setStatus('loading');
     try {
-      const res = await fetch('/api/contact/', {
+      const res = await fetch(`${BACKEND_URL}/api/contact/`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'X-CSRFToken': getCSRFToken()
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ 
+          name: form.name, 
+          email: form.email, 
+          message: form.message 
+        }),
       });
       if (res.ok) {
         setStatus('success');
         setForm({ name: '', email: '', message: '', website: '' });
+        setTimeout(() => setStatus(null), 3000);
       } else {
         const data = await res.json();
         setErrors(data);
         setStatus('error');
+        setTimeout(() => setStatus(null), 3000);
       }
     } catch {
       setStatus('error');
+      setTimeout(() => setStatus(null), 3000);
     }
   };
 
@@ -80,7 +79,6 @@ export default function Contact({ standalone }) {
                 <div className="success-icon">✓</div>
                 <h3>Message Sent!</h3>
                 <p>Thank you for reaching out. We'll be in touch shortly.</p>
-                <button className="btn-outline" onClick={() => setStatus(null)}>Send Another</button>
               </div>
             ) : (
               <>

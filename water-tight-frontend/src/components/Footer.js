@@ -2,25 +2,11 @@ import React from 'react';
 import './Footer.css';
 
 export default function Footer({ navigate }) {
-
-  const getBackendUrl = () => {
-    if (process.env.NODE_ENV === 'production') {
-      return 'https://nexatech-backend-qeti.onrender.com';
-    }
-    return 'http://localhost:8000';
-  };
+  // Use your actual Render backend URL
+  const BACKEND_URL = 'https://nexatech-backend-qeti.onrender.com';
 
   const handleAdminClick = () => {
-    const adminUrl = `${getBackendUrl()}/admin/`;
-    window.open(adminUrl, '_blank');
-  };
-
-  const handlePrivacyClick = () => {
-    alert('Privacy policy coming soon');
-  };
-
-  const handleTermsClick = () => {
-    alert('Terms of service coming soon');
+    window.open(`${BACKEND_URL}/admin/`, '_blank');
   };
 
   return (
@@ -28,10 +14,10 @@ export default function Footer({ navigate }) {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <div className="logo" onClick={() => navigate('home')} style={{ cursor: 'pointer' }}>
+            <button className="logo" onClick={() => navigate('home')} style={{ cursor: 'pointer', background: 'none', border: 'none' }}>
               <span className="logo-mark">N</span>
               <span className="logo-text">NexaTech</span>
-            </div>
+            </button>
             <p>Powering tomorrow's enterprises with cutting-edge technology solutions.</p>
           </div>
           <div className="footer-links">
@@ -42,8 +28,8 @@ export default function Footer({ navigate }) {
           </div>
           <div className="footer-links">
             <h4>Legal</h4>
-            <button onClick={handlePrivacyClick}>Privacy Policy</button>
-            <button onClick={handleTermsClick}>Terms of Service</button>
+            <button onClick={() => alert('Privacy policy coming soon')}>Privacy Policy</button>
+            <button onClick={() => alert('Terms of service coming soon')}>Terms of Service</button>
           </div>
           <div className="footer-links">
             <h4>Admin</h4>
